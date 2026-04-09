@@ -1,6 +1,20 @@
 <div align="center">
 
-<img src="./static/image/MiroFish_logo_compressed.jpeg" alt="MiroFish Logo" width="75%"/>
+# 🌍 LifeOS — 人生操作系统
+
+**AI 驱动的个人生命轨迹模拟与预测引擎**
+
+*用数字沙盘预演你的人生，在决策前看见未来*
+
+[![Python](https://img.shields.io/badge/Python-3.11%2B-3776AB?style=flat-square&logo=python&logoColor=white)](https://python.org)
+[![Vue](https://img.shields.io/badge/Vue-3-4FC08D?style=flat-square&logo=vue.js&logoColor=white)](https://vuejs.org)
+[![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)](./LICENSE)
+[![LLM](https://img.shields.io/badge/LLM-通义千问--Plus-FF6A00?style=flat-square)](https://bailian.console.aliyun.com/)
+[![GraphRAG](https://img.shields.io/badge/记忆-Zep%20GraphRAG-8B5CF6?style=flat-square)](https://www.getzep.com/)
+
+[English](./README.md) &nbsp;|&nbsp; [中文文档](./README-ZH.md)
+
+</div>
 
 <a href="https://trendshift.io/repositories/16144" target="_blank"><img src="https://trendshift.io/api/badge/repositories/16144" alt="666ghj%2FMiroFish | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
 
