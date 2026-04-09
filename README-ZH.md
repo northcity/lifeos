@@ -8,7 +8,7 @@
 
 [![Python](https://img.shields.io/badge/Python-3.11%2B-3776AB?style=flat-square&logo=python&logoColor=white)](https://python.org)
 [![Vue](https://img.shields.io/badge/Vue-3-4FC08D?style=flat-square&logo=vue.js&logoColor=white)](https://vuejs.org)
-[![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)](./LICENSE)
+[![License](https://img.shields.io/badge/License-AGPL--3.0-blue?style=flat-square)](./LICENSE)
 [![LLM](https://img.shields.io/badge/LLM-通义千问--Plus-FF6A00?style=flat-square)](https://bailian.console.aliyun.com/)
 [![GraphRAG](https://img.shields.io/badge/记忆-Zep%20GraphRAG-8B5CF6?style=flat-square)](https://www.getzep.com/)
 
@@ -126,10 +126,14 @@ docker compose up -d
 
 ## 💬 致谢
 
+LifeOS 灵感来源于 **[MiroFish](https://github.com/666ghj/Mirofish)**，一款社会舐论模拟引擎。MiroFish 展示了多智能体仿真在现实社会动态中的应用潜力，LifeOS 将这一思路延伸至个人人生轨迹规划领域。衷心感谢 MiroFish 项目提供的灵感与参考。
+
 本项目仿真引擎基于 **[OASIS](https://github.com/camel-ai/oasis)**（CAMEL-AI 团队开源）构建，衷心感谢其对多智能体仿真领域的开源贡献。
+
+> **开源声明**：依据 AGPLv3 开源协议，本项目完整源代码已公开至 [github.com/northcity/lifeos](https://github.com/northcity/lifeos)。如果你将修改后的版本部署为网络服务，同样需要向用户提供修改后的源代码。
 
 ---
 
 ## 📄 License
 
-MIT License — 详见 [LICENSE](./LICENSE)
+本项目采用 **GNU Affero General Public License v3.0（AGPLv3）**。若将修改后的版本部署为网络服务，必须将修改后的源代码公开。详见 [LICENSE](./LICENSE)。

@@ -8,7 +8,7 @@
 
 [![Python](https://img.shields.io/badge/Python-3.11%2B-3776AB?style=flat-square&logo=python&logoColor=white)](https://python.org)
 [![Vue](https://img.shields.io/badge/Vue-3-4FC08D?style=flat-square&logo=vue.js&logoColor=white)](https://vuejs.org)
-[![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)](./LICENSE)
+[![License](https://img.shields.io/badge/License-AGPL--3.0-blue?style=flat-square)](./LICENSE)
 [![LLM](https://img.shields.io/badge/LLM-Qwen--Plus-FF6A00?style=flat-square)](https://bailian.console.aliyun.com/)
 [![GraphRAG](https://img.shields.io/badge/Memory-Zep%20GraphRAG-8B5CF6?style=flat-square)](https://www.getzep.com/)
 
@@ -67,7 +67,7 @@ Your Profile + Goals
 
 | Scenario | What you input | What LifeOS predicts |
 |----------|---------------|---------------------|
-| 🏠 Shanghai down payment | Monthly income ¥30k, savings ¥500k, goal: ¥1M down payment in 3 years | Probability of reaching goal, optimal saving strategy, risk months |
+| 🏠 Home purchase goal | Zhang Wei (32, Beijing), monthly income ¥25k, savings ¥400k, goal: ¥800k down payment in 4 years | Probability of reaching goal, optimal saving strategy, risk months |
 | 💼 Career switch | Current role, target role, skill gaps, family financial commitments | Transition timeline, income dip duration, recovery trajectory |
 | 👨‍👩‍👧 Family planning | Current finances, expected childcare costs, career plans | Monthly cashflow impact, milestone conflicts, recommended timing |
 | 📈 Investment strategy | Asset allocation, risk tolerance, income timeline | Portfolio performance simulation, downside scenarios |
@@ -141,10 +141,14 @@ Ports `3000` (frontend) and `5001` (backend) are mapped automatically.
 
 ## 💬 Acknowledgments
 
-Built on top of **[OASIS](https://github.com/camel-ai/oasis)** by the CAMEL-AI team. Sincere thanks for the open-source multi-agent simulation framework.
+LifeOS was inspired by and built upon **[MiroFish](https://github.com/666ghj/Mirofish)** — a social opinion simulation engine. MiroFish demonstrated the power of multi-agent simulation for real-world social dynamics, and LifeOS extends this idea into the domain of personal life trajectory planning.
+
+The simulation engine is built on top of **[OASIS](https://github.com/camel-ai/oasis)** by the CAMEL-AI team. Sincere thanks for the open-source multi-agent simulation framework.
+
+> **Source Code**: In compliance with the AGPLv3 license, the complete source code of this modified version is available at [github.com/northcity/lifeos](https://github.com/northcity/lifeos).
 
 ---
 
 ## 📄 License
 
-MIT License — see [LICENSE](./LICENSE) for details.
+This project is licensed under the **GNU Affero General Public License v3.0 (AGPLv3)**. If you run a modified version as a network service, you must make the modified source code publicly available. See [LICENSE](./LICENSE) for full details.
