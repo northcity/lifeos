@@ -73,6 +73,28 @@ def create_app(config_class=Config):
     def health():
         return {'status': 'ok', 'service': 'LifeOS Backend'}
     
+    # 托管前端静态文件（生产模式 Docker 部署）
+    import mimetypes
+    from flask import send_from_directory, send_file
+    
+    frontend_dist = os.path.join(os.path.dirname(__file__), '..', '..', 'frontend', 'dist')
+    
+    if os.path.isdir(frontend_dist):
+        @app.route('/assets/<path:filename>')
+        def frontend_assets(filename):
+            return send_from_directory(os.path.join(frontend_dist, 'assets'), filename)
+
+        @app.route('/', defaults={'path': ''})
+        @app.route('/<path:path>')
+        def serve_frontend(path):
+            full_path = os.path.join(frontend_dist, path)
+            if path and os.path.isfile(full_path):
+                return send_from_directory(frontend_dist, path)
+            return send_from_directory(frontend_dist, 'index.html')
+        
+        if should_log_startup:
+            logger.info(f"前端静态文件服务已启用: {frontend_dist}")
+    
     if should_log_startup:
         logger.info("LifeOS Backend 启动完成")
     
