@@ -5,7 +5,7 @@
       <div class="nav-brand">LIFEOS</div>
       <div class="nav-links">
         <LanguageSwitcher />
-        <a href="https://github.com/northcity/AIchat" target="_blank" class="github-link">
+        <a href="https://github.com/northcity/lifeos" target="_blank" class="github-link">
           {{ $t('nav.visitGithub') }} <span class="arrow">↗</span>
         </a>
       </div>
@@ -44,48 +44,209 @@
         <div class="hero-right">
           <!-- Logo 区域 -->
           <div class="logo-container">
-            <svg class="hero-logo" viewBox="0 0 480 320" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <!-- Outer ring -->
-              <circle cx="240" cy="160" r="140" stroke="#00d4ff" stroke-width="1.5" stroke-dasharray="6 4" opacity="0.4"/>
-              <circle cx="240" cy="160" r="110" stroke="#00d4ff" stroke-width="0.8" opacity="0.2"/>
-              <!-- Central brain/node cluster -->
-              <circle cx="240" cy="160" r="36" fill="none" stroke="#00d4ff" stroke-width="2" opacity="0.9"/>
-              <circle cx="240" cy="160" r="22" fill="#0a1628" stroke="#00d4ff" stroke-width="1.5"/>
-              <!-- LifeOS text inside -->
-              <text x="240" y="155" text-anchor="middle" fill="#00d4ff" font-size="9" font-family="monospace" font-weight="bold" letter-spacing="1">LIFE</text>
-              <text x="240" y="168" text-anchor="middle" fill="#00d4ff" font-size="9" font-family="monospace" font-weight="bold" letter-spacing="1">OS</text>
-              <!-- Orbital nodes - Finance -->
-              <circle cx="240" cy="50" r="18" fill="#0a1628" stroke="#00ff88" stroke-width="1.5"/>
-              <text x="240" y="46" text-anchor="middle" fill="#00ff88" font-size="7" font-family="monospace">财务</text>
-              <text x="240" y="56" text-anchor="middle" fill="#00ff88" font-size="7" font-family="monospace">轨迹</text>
-              <line x1="240" y1="68" x2="240" y2="124" stroke="#00ff88" stroke-width="1" opacity="0.5" stroke-dasharray="3 2"/>
-              <!-- Career node -->
-              <circle cx="365" cy="105" r="18" fill="#0a1628" stroke="#ff6b6b" stroke-width="1.5"/>
-              <text x="365" y="101" text-anchor="middle" fill="#ff6b6b" font-size="7" font-family="monospace">职业</text>
-              <text x="365" y="111" text-anchor="middle" fill="#ff6b6b" font-size="7" font-family="monospace">路径</text>
-              <line x1="349" y1="118" x2="272" y2="148" stroke="#ff6b6b" stroke-width="1" opacity="0.5" stroke-dasharray="3 2"/>
-              <!-- Family node -->
-              <circle cx="365" cy="215" r="18" fill="#0a1628" stroke="#ffd700" stroke-width="1.5"/>
-              <text x="365" y="211" text-anchor="middle" fill="#ffd700" font-size="7" font-family="monospace">家庭</text>
-              <text x="365" y="221" text-anchor="middle" fill="#ffd700" font-size="7" font-family="monospace">里程碑</text>
-              <line x1="349" y1="202" x2="272" y2="172" stroke="#ffd700" stroke-width="1" opacity="0.5" stroke-dasharray="3 2"/>
-              <!-- Decision node -->
-              <circle cx="240" cy="270" r="18" fill="#0a1628" stroke="#bd93f9" stroke-width="1.5"/>
-              <text x="240" y="266" text-anchor="middle" fill="#bd93f9" font-size="7" font-family="monospace">决策</text>
-              <text x="240" y="276" text-anchor="middle" fill="#bd93f9" font-size="7" font-family="monospace">建议</text>
-              <line x1="240" y1="252" x2="240" y2="196" stroke="#bd93f9" stroke-width="1" opacity="0.5" stroke-dasharray="3 2"/>
-              <!-- Risk node -->
-              <circle cx="115" cy="215" r="18" fill="#0a1628" stroke="#ff9f43" stroke-width="1.5"/>
-              <text x="115" y="211" text-anchor="middle" fill="#ff9f43" font-size="7" font-family="monospace">风险</text>
-              <text x="115" y="221" text-anchor="middle" fill="#ff9f43" font-size="7" font-family="monospace">预警</text>
-              <line x1="131" y1="202" x2="208" y2="172" stroke="#ff9f43" stroke-width="1" opacity="0.5" stroke-dasharray="3 2"/>
-              <!-- Self agent node -->
-              <circle cx="115" cy="105" r="18" fill="#0a1628" stroke="#00d4ff" stroke-width="1.5"/>
-              <text x="115" y="101" text-anchor="middle" fill="#00d4ff" font-size="7" font-family="monospace">未来</text>
-              <text x="115" y="111" text-anchor="middle" fill="#00d4ff" font-size="7" font-family="monospace">自我</text>
-              <line x1="131" y1="118" x2="208" y2="148" stroke="#00d4ff" stroke-width="1" opacity="0.5" stroke-dasharray="3 2"/>
-              <!-- Glow effect -->
-              <circle cx="240" cy="160" r="36" fill="none" stroke="#00d4ff" stroke-width="6" opacity="0.06"/>
+            <svg class="hero-logo" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <filter id="glow-node" x="-50%" y="-50%" width="200%" height="200%">
+                  <feGaussianBlur stdDeviation="4" result="blur"/>
+                  <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
+                <filter id="glow-core" x="-80%" y="-80%" width="260%" height="260%">
+                  <feGaussianBlur stdDeviation="10" result="blur"/>
+                  <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
+                <radialGradient id="core-glow-grad" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#00d4ff" stop-opacity="0.35"/>
+                  <stop offset="100%" stop-color="#00d4ff" stop-opacity="0"/>
+                </radialGradient>
+                <radialGradient id="bg-grad" cx="35%" cy="35%" r="70%">
+                  <stop offset="0%" stop-color="#0d1e35"/>
+                  <stop offset="100%" stop-color="#05080f"/>
+                </radialGradient>
+              </defs>
+
+              <!-- Background panel -->
+              <rect x="1" y="1" width="498" height="498" rx="10" fill="url(#bg-grad)"/>
+              <rect x="1" y="1" width="498" height="498" rx="10" fill="none" stroke="#00d4ff" stroke-width="0.5" opacity="0.25"/>
+
+              <!-- Corner bracket decorations -->
+              <path d="M18 58 L18 18 L58 18" stroke="#00d4ff" stroke-width="1.5" opacity="0.55" stroke-linecap="square"/>
+              <path d="M482 58 L482 18 L442 18" stroke="#00d4ff" stroke-width="1.5" opacity="0.55" stroke-linecap="square"/>
+              <path d="M18 442 L18 482 L58 482" stroke="#00d4ff" stroke-width="1.5" opacity="0.55" stroke-linecap="square"/>
+              <path d="M482 442 L482 482 L442 482" stroke="#00d4ff" stroke-width="1.5" opacity="0.55" stroke-linecap="square"/>
+
+              <!-- Corner data labels -->
+              <text x="24" y="14" fill="#00d4ff" font-size="7" font-family="monospace" opacity="0.45">SYS:ACTIVE</text>
+              <text x="370" y="14" fill="#00d4ff" font-size="7" font-family="monospace" opacity="0.45">v2.1.0</text>
+              <text x="24" y="495" fill="#00d4ff" font-size="7" font-family="monospace" opacity="0.45">SIMULATION_ENGINE</text>
+              <text x="380" y="495" fill="#00d4ff" font-size="7" font-family="monospace" opacity="0.45">READY</text>
+
+              <!-- Diamond markers at ring edges -->
+              <rect x="247" y="29" width="6" height="6" fill="#00d4ff" opacity="0.5" transform="rotate(45 250 32)"/>
+              <rect x="469" y="247" width="6" height="6" fill="#00d4ff" opacity="0.5" transform="rotate(45 472 250)"/>
+              <rect x="247" y="465" width="6" height="6" fill="#00d4ff" opacity="0.5" transform="rotate(45 250 468)"/>
+              <rect x="27" y="247" width="6" height="6" fill="#00d4ff" opacity="0.5" transform="rotate(45 30 250)"/>
+
+              <!-- Outer static ring -->
+              <circle cx="250" cy="250" r="228" stroke="#00d4ff" stroke-width="0.5" opacity="0.08"/>
+
+              <!-- Outer dashed ring — rotating clockwise -->
+              <circle cx="250" cy="250" r="195" stroke="#00d4ff" stroke-width="1" stroke-dasharray="3 9" opacity="0.35">
+                <animateTransform attributeName="transform" type="rotate" from="0 250 250" to="360 250 250" dur="28s" repeatCount="indefinite"/>
+              </circle>
+
+              <!-- Middle dashed ring — rotating counter-clockwise -->
+              <circle cx="250" cy="250" r="152" stroke="#00d4ff" stroke-width="0.8" stroke-dasharray="8 20" opacity="0.2">
+                <animateTransform attributeName="transform" type="rotate" from="0 250 250" to="-360 250 250" dur="18s" repeatCount="indefinite"/>
+              </circle>
+
+              <!-- Inner data ring -->
+              <circle cx="250" cy="250" r="100" stroke="#00d4ff" stroke-width="0.8" opacity="0.15"/>
+              <!-- Tick marks on inner ring -->
+              <line x1="250" y1="148" x2="250" y2="142" stroke="#00d4ff" stroke-width="2" opacity="0.5"/>
+              <line x1="352" y1="250" x2="358" y2="250" stroke="#00d4ff" stroke-width="2" opacity="0.5"/>
+              <line x1="250" y1="352" x2="250" y2="358" stroke="#00d4ff" stroke-width="2" opacity="0.5"/>
+              <line x1="148" y1="250" x2="142" y2="250" stroke="#00d4ff" stroke-width="2" opacity="0.5"/>
+
+              <!-- Radar sweep (group rotates around center) -->
+              <g>
+                <line x1="250" y1="250" x2="250" y2="58" stroke="#00d4ff" stroke-width="1.5" opacity="0.5"/>
+                <line x1="250" y1="250" x2="250" y2="58" stroke="#00d4ff" stroke-width="22" opacity="0.04"/>
+                <animateTransform attributeName="transform" type="rotate" from="0 250 250" to="360 250 250" dur="8s" repeatCount="indefinite"/>
+              </g>
+
+              <!-- Spokes (colored dashed lines from core edge to node edge) -->
+              <!-- Finance (top) -->
+              <line x1="250" y1="195" x2="250" y2="100" stroke="#00ff88" stroke-width="1" opacity="0.45" stroke-dasharray="4 4"/>
+              <!-- Career (top-right) -->
+              <line x1="298" y1="222" x2="382" y2="175" stroke="#ff6b6b" stroke-width="1" opacity="0.45" stroke-dasharray="4 4"/>
+              <!-- Family (bottom-right) -->
+              <line x1="298" y1="278" x2="382" y2="325" stroke="#ffd700" stroke-width="1" opacity="0.45" stroke-dasharray="4 4"/>
+              <!-- Decision (bottom) -->
+              <line x1="250" y1="305" x2="250" y2="400" stroke="#bd93f9" stroke-width="1" opacity="0.45" stroke-dasharray="4 4"/>
+              <!-- Risk (bottom-left) -->
+              <line x1="202" y1="278" x2="118" y2="325" stroke="#ff9f43" stroke-width="1" opacity="0.45" stroke-dasharray="4 4"/>
+              <!-- FutureSelf (top-left) -->
+              <line x1="202" y1="222" x2="118" y2="175" stroke="#00d4ff" stroke-width="1" opacity="0.45" stroke-dasharray="4 4"/>
+
+              <!-- Animated signal dots on spokes -->
+              <!-- Finance -->
+              <circle r="3.5" fill="#00ff88">
+                <animate attributeName="cx" values="250;250" dur="2.5s" repeatCount="indefinite"/>
+                <animate attributeName="cy" values="195;100" dur="2.5s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0;1;0" dur="2.5s" repeatCount="indefinite"/>
+              </circle>
+              <!-- Career -->
+              <circle r="3.5" fill="#ff6b6b">
+                <animate attributeName="cx" values="298;382" dur="2.5s" begin="0.4s" repeatCount="indefinite"/>
+                <animate attributeName="cy" values="222;175" dur="2.5s" begin="0.4s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0;1;0" dur="2.5s" begin="0.4s" repeatCount="indefinite"/>
+              </circle>
+              <!-- Family -->
+              <circle r="3.5" fill="#ffd700">
+                <animate attributeName="cx" values="298;382" dur="2.5s" begin="0.8s" repeatCount="indefinite"/>
+                <animate attributeName="cy" values="278;325" dur="2.5s" begin="0.8s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0;1;0" dur="2.5s" begin="0.8s" repeatCount="indefinite"/>
+              </circle>
+              <!-- Decision -->
+              <circle r="3.5" fill="#bd93f9">
+                <animate attributeName="cx" values="250;250" dur="2.5s" begin="1.2s" repeatCount="indefinite"/>
+                <animate attributeName="cy" values="305;400" dur="2.5s" begin="1.2s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0;1;0" dur="2.5s" begin="1.2s" repeatCount="indefinite"/>
+              </circle>
+              <!-- Risk -->
+              <circle r="3.5" fill="#ff9f43">
+                <animate attributeName="cx" values="202;118" dur="2.5s" begin="1.6s" repeatCount="indefinite"/>
+                <animate attributeName="cy" values="278;325" dur="2.5s" begin="1.6s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0;1;0" dur="2.5s" begin="1.6s" repeatCount="indefinite"/>
+              </circle>
+              <!-- FutureSelf -->
+              <circle r="3.5" fill="#00d4ff">
+                <animate attributeName="cx" values="202;118" dur="2.5s" begin="2.0s" repeatCount="indefinite"/>
+                <animate attributeName="cy" values="222;175" dur="2.5s" begin="2.0s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0;1;0" dur="2.5s" begin="2.0s" repeatCount="indefinite"/>
+              </circle>
+
+              <!-- Core glow pulse -->
+              <circle cx="250" cy="250" r="80" fill="url(#core-glow-grad)">
+                <animate attributeName="opacity" values="0.5;1;0.5" dur="3s" repeatCount="indefinite"/>
+              </circle>
+
+              <!-- Core rings -->
+              <circle cx="250" cy="250" r="58" fill="none" stroke="#00d4ff" stroke-width="2.5" filter="url(#glow-core)">
+                <animate attributeName="opacity" values="0.6;1;0.6" dur="3s" repeatCount="indefinite"/>
+              </circle>
+              <circle cx="250" cy="250" r="44" fill="#060d1a" stroke="#00d4ff" stroke-width="1.5"/>
+              <circle cx="250" cy="250" r="30" fill="#0d1e35" stroke="#00d4ff" stroke-width="1" opacity="0.5"/>
+
+              <!-- LifeOS text -->
+              <text x="250" y="245" text-anchor="middle" fill="#00d4ff" font-size="11" font-family="monospace" font-weight="bold" letter-spacing="3">LIFE</text>
+              <text x="250" y="262" text-anchor="middle" fill="#00d4ff" font-size="11" font-family="monospace" font-weight="bold" letter-spacing="3">OS</text>
+
+              <!-- Node: Finance (top) cx=250 cy=75 -->
+              <circle cx="250" cy="75" r="34" fill="#00ff88" opacity="0.08">
+                <animate attributeName="opacity" values="0.05;0.18;0.05" dur="3s" begin="0s" repeatCount="indefinite"/>
+              </circle>
+              <circle cx="250" cy="75" r="25" fill="#060d1a" stroke="#00ff88" stroke-width="2" filter="url(#glow-node)"/>
+              <circle cx="250" cy="75" r="29" fill="none" stroke="#00ff88" stroke-width="0.8" opacity="0.4">
+                <animateTransform attributeName="transform" type="rotate" from="0 250 75" to="360 250 75" dur="12s" repeatCount="indefinite"/>
+              </circle>
+              <text x="250" y="70" text-anchor="middle" fill="#00ff88" font-size="8.5" font-family="monospace" font-weight="700">财务</text>
+              <text x="250" y="83" text-anchor="middle" fill="#00ff88" font-size="8.5" font-family="monospace" font-weight="700">轨迹</text>
+
+              <!-- Node: Career (top-right) cx=402 cy=163 -->
+              <circle cx="402" cy="163" r="34" fill="#ff6b6b" opacity="0.08">
+                <animate attributeName="opacity" values="0.05;0.18;0.05" dur="3s" begin="0.5s" repeatCount="indefinite"/>
+              </circle>
+              <circle cx="402" cy="163" r="25" fill="#060d1a" stroke="#ff6b6b" stroke-width="2" filter="url(#glow-node)"/>
+              <circle cx="402" cy="163" r="29" fill="none" stroke="#ff6b6b" stroke-width="0.8" opacity="0.4">
+                <animateTransform attributeName="transform" type="rotate" from="0 402 163" to="360 402 163" dur="12s" repeatCount="indefinite"/>
+              </circle>
+              <text x="402" y="158" text-anchor="middle" fill="#ff6b6b" font-size="8.5" font-family="monospace" font-weight="700">职业</text>
+              <text x="402" y="171" text-anchor="middle" fill="#ff6b6b" font-size="8.5" font-family="monospace" font-weight="700">路径</text>
+
+              <!-- Node: Family (bottom-right) cx=402 cy=337 -->
+              <circle cx="402" cy="337" r="34" fill="#ffd700" opacity="0.08">
+                <animate attributeName="opacity" values="0.05;0.18;0.05" dur="3s" begin="1.0s" repeatCount="indefinite"/>
+              </circle>
+              <circle cx="402" cy="337" r="25" fill="#060d1a" stroke="#ffd700" stroke-width="2" filter="url(#glow-node)"/>
+              <circle cx="402" cy="337" r="29" fill="none" stroke="#ffd700" stroke-width="0.8" opacity="0.4">
+                <animateTransform attributeName="transform" type="rotate" from="0 402 337" to="360 402 337" dur="12s" repeatCount="indefinite"/>
+              </circle>
+              <text x="402" y="332" text-anchor="middle" fill="#ffd700" font-size="8.5" font-family="monospace" font-weight="700">家庭</text>
+              <text x="402" y="345" text-anchor="middle" fill="#ffd700" font-size="8.5" font-family="monospace" font-weight="700">里程碑</text>
+
+              <!-- Node: Decision (bottom) cx=250 cy=425 -->
+              <circle cx="250" cy="425" r="34" fill="#bd93f9" opacity="0.08">
+                <animate attributeName="opacity" values="0.05;0.18;0.05" dur="3s" begin="1.5s" repeatCount="indefinite"/>
+              </circle>
+              <circle cx="250" cy="425" r="25" fill="#060d1a" stroke="#bd93f9" stroke-width="2" filter="url(#glow-node)"/>
+              <circle cx="250" cy="425" r="29" fill="none" stroke="#bd93f9" stroke-width="0.8" opacity="0.4">
+                <animateTransform attributeName="transform" type="rotate" from="0 250 425" to="360 250 425" dur="12s" repeatCount="indefinite"/>
+              </circle>
+              <text x="250" y="420" text-anchor="middle" fill="#bd93f9" font-size="8.5" font-family="monospace" font-weight="700">决策</text>
+              <text x="250" y="433" text-anchor="middle" fill="#bd93f9" font-size="8.5" font-family="monospace" font-weight="700">建议</text>
+
+              <!-- Node: Risk (bottom-left) cx=98 cy=337 -->
+              <circle cx="98" cy="337" r="34" fill="#ff9f43" opacity="0.08">
+                <animate attributeName="opacity" values="0.05;0.18;0.05" dur="3s" begin="2.0s" repeatCount="indefinite"/>
+              </circle>
+              <circle cx="98" cy="337" r="25" fill="#060d1a" stroke="#ff9f43" stroke-width="2" filter="url(#glow-node)"/>
+              <circle cx="98" cy="337" r="29" fill="none" stroke="#ff9f43" stroke-width="0.8" opacity="0.4">
+                <animateTransform attributeName="transform" type="rotate" from="0 98 337" to="360 98 337" dur="12s" repeatCount="indefinite"/>
+              </circle>
+              <text x="98" y="332" text-anchor="middle" fill="#ff9f43" font-size="8.5" font-family="monospace" font-weight="700">风险</text>
+              <text x="98" y="345" text-anchor="middle" fill="#ff9f43" font-size="8.5" font-family="monospace" font-weight="700">预警</text>
+
+              <!-- Node: FutureSelf (top-left) cx=98 cy=163 -->
+              <circle cx="98" cy="163" r="34" fill="#00d4ff" opacity="0.08">
+                <animate attributeName="opacity" values="0.05;0.18;0.05" dur="3s" begin="2.5s" repeatCount="indefinite"/>
+              </circle>
+              <circle cx="98" cy="163" r="25" fill="#060d1a" stroke="#00d4ff" stroke-width="2" filter="url(#glow-node)"/>
+              <circle cx="98" cy="163" r="29" fill="none" stroke="#00d4ff" stroke-width="0.8" opacity="0.4">
+                <animateTransform attributeName="transform" type="rotate" from="0 98 163" to="360 98 163" dur="12s" repeatCount="indefinite"/>
+              </circle>
+              <text x="98" y="158" text-anchor="middle" fill="#00d4ff" font-size="8.5" font-family="monospace" font-weight="700">未来</text>
+              <text x="98" y="171" text-anchor="middle" fill="#00d4ff" font-size="8.5" font-family="monospace" font-weight="700">自我</text>
             </svg>
           </div>
           
@@ -476,7 +637,7 @@ const startSimulation = () => {
 }
 
 .gradient-text {
-  background: linear-gradient(90deg, #000000 0%, #444444 100%);
+  background: linear-gradient(120deg, #000000 0%, #1a1a2e 40%, #00d4ff 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   display: inline-block;
@@ -561,10 +722,11 @@ const startSimulation = () => {
 
 .hero-logo {
   width: 100%;
-  max-width: 460px;
+  max-width: 440px;
   height: auto;
-  filter: drop-shadow(0 0 20px rgba(0, 212, 255, 0.25));
+  filter: drop-shadow(0 0 30px rgba(0, 212, 255, 0.4)) drop-shadow(0 0 60px rgba(0, 212, 255, 0.15));
   animation: float 6s ease-in-out infinite;
+  border-radius: 10px;
 }
 
 @keyframes float {
@@ -758,6 +920,12 @@ const startSimulation = () => {
 
 .upload-zone.has-files {
   align-items: flex-start;
+}
+
+.upload-zone.drag-over {
+  background: #EEF8FF;
+  border-color: #00d4ff;
+  border-style: solid;
 }
 
 .upload-zone:hover {
