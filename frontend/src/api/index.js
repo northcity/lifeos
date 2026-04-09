@@ -15,6 +15,11 @@ const service = axios.create({
 service.interceptors.request.use(
   config => {
     config.headers['Accept-Language'] = i18n.global.locale.value
+    // 携带会员码（如已保存）
+    const memberCode = localStorage.getItem('lifeos_member_code')
+    if (memberCode) {
+      config.headers['X-Member-Code'] = memberCode
+    }
     return config
   },
   error => {

@@ -9,7 +9,7 @@ from flask import request, jsonify, send_file
 
 from . import simulation_bp
 from ..config import Config
-from ..extensions import limiter
+from ..extensions import limiter, require_member
 from ..services.zep_entity_reader import ZepEntityReader
 from ..services.oasis_profile_generator import OasisProfileGenerator
 from ..services.simulation_manager import SimulationManager, SimulationStatus
@@ -1451,6 +1451,7 @@ def generate_profiles():
 
 @simulation_bp.route('/start', methods=['POST'])
 @limiter.limit("5 per hour", error_message="免费版每个IP每小时5次模拟限额，如需更多请升级 VIP")
+@require_member
 def start_simulation():
     """
     开始运行模拟

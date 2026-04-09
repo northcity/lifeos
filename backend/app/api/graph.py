@@ -10,7 +10,7 @@ from flask import request, jsonify
 
 from . import graph_bp
 from ..config import Config
-from ..extensions import limiter
+from ..extensions import limiter, require_member
 from ..services.ontology_generator import OntologyGenerator
 from ..services.graph_builder import GraphBuilderService
 from ..services.text_processor import TextProcessor
@@ -122,6 +122,7 @@ def reset_project(project_id: str):
 
 @graph_bp.route('/ontology/generate', methods=['POST'])
 @limiter.limit("5 per hour", error_message="免费版每个IP每小时5次上传限额，如需更多请升级 VIP")
+@require_member
 def generate_ontology():
     """
     接口1：上传文件，分析生成本体定义

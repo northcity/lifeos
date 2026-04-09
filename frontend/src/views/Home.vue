@@ -8,6 +8,12 @@
         <a href="https://github.com/northcity/lifeos" target="_blank" class="github-link">
           {{ $t('nav.visitGithub') }} <span class="arrow">↗</span>
         </a>
+        <button v-if="!isMember" class="member-badge unlocked" @click="showMemberModal = true">
+          🔐 未登录
+        </button>
+        <div v-else class="member-badge active">
+          ✓ 会员
+        </div>
       </div>
     </nav>
 
@@ -396,10 +402,11 @@
             <div class="console-section btn-section">
               <button 
                 class="start-engine-btn"
-                @click="startSimulation"
-                :disabled="!canSubmit || loading"
+                @click="isMember ? startSimulation() : showMemberModal = true"
+                :disabled="isMember && (!canSubmit || loading)"
               >
-                <span v-if="!loading">{{ $t('home.startEngine') }}</span>
+                <span v-if="!isMember">🔒 {{ $t('home.startEngine') }}</span>
+                <span v-else-if="!loading">{{ $t('home.startEngine') }}</span>
                 <span v-else>{{ $t('home.initializing') }}</span>
                 <span class="btn-arrow">→</span>
               </button>
@@ -412,15 +419,38 @@
       <HistoryDatabase />
     </div>
   </div>
+
+  <!-- 会员模态框 -->
+  <MemberModal
+    v-if="showMemberModal"
+    @verified="onMemberVerified"
+    @close="showMemberModal = false"
+  />
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import HistoryDatabase from '../components/HistoryDatabase.vue'
 import LanguageSwitcher from '../components/LanguageSwitcher.vue'
+import MemberModal from '../components/MemberModal.vue'
 
 const router = useRouter()
+
+// 会员状态
+const memberCode = ref('')
+const showMemberModal = ref(false)
+const isMember = computed(() => !!memberCode.value)
+
+onMounted(() => {
+  const saved = localStorage.getItem('lifeos_member_code')
+  if (saved) memberCode.value = saved
+})
+
+const onMemberVerified = (code) => {
+  memberCode.value = code
+  showMemberModal.value = false
+}
 
 // 表单数据
 const formData = ref({
@@ -577,6 +607,39 @@ const startSimulation = () => {
 
 .github-link:hover {
   opacity: 0.8;
+}
+
+.member-badge {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 5px 12px;
+  border: none;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  transition: all 0.2s;
+}
+
+.member-badge.unlocked {
+  background: rgba(255,255,255,0.12);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.3);
+}
+
+.member-badge.unlocked:hover {
+  background: rgba(255,69,0,0.8);
+  border-color: #FF4500;
+}
+
+.member-badge.active {
+  background: transparent;
+  color: #00ff88;
+  border: 1px solid rgba(0,255,136,0.4);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.78rem;
+  padding: 5px 12px;
 }
 
 .arrow {

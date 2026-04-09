@@ -48,6 +48,10 @@ class Config:
     # 免费用户推演轮数上限（超出需升级 VIP）
     FREE_MAX_ROUNDS = int(os.environ.get('FREE_MAX_ROUNDS', '10'))
 
+    # 会员码（逗号分隔，存在 Railway 环境变量中）
+    # 示例: MEMBER_CODES=lifeos2026,vip2026
+    MEMBER_CODES = os.environ.get('MEMBER_CODES', '')
+
     # OASIS模拟配置
     OASIS_DEFAULT_MAX_ROUNDS = int(os.environ.get('OASIS_DEFAULT_MAX_ROUNDS', '10'))
     OASIS_SIMULATION_DATA_DIR = os.path.join(os.path.dirname(__file__), '../uploads/simulations')
