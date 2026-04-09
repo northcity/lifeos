@@ -45,6 +45,9 @@ class Config:
     DEFAULT_CHUNK_SIZE = 500  # 默认切块大小
     DEFAULT_CHUNK_OVERLAP = 50  # 默认重叠大小
     
+    # 免费用户推演轮数上限（超出需升级 VIP）
+    FREE_MAX_ROUNDS = int(os.environ.get('FREE_MAX_ROUNDS', '10'))
+
     # OASIS模拟配置
     OASIS_DEFAULT_MAX_ROUNDS = int(os.environ.get('OASIS_DEFAULT_MAX_ROUNDS', '10'))
     OASIS_SIMULATION_DATA_DIR = os.path.join(os.path.dirname(__file__), '../uploads/simulations')

@@ -13,6 +13,7 @@ from flask import Flask, request
 from flask_cors import CORS
 
 from .config import Config
+from .extensions import limiter, rate_limit_exceeded_handler
 from .utils.logger import setup_logger, get_logger
 
 
@@ -41,6 +42,10 @@ def create_app(config_class=Config):
     
     # 启用CORS
     CORS(app, resources={r"/api/*": {"origins": "*"}})
+
+    # 启用限速（免费版防滥用）
+    limiter.init_app(app)
+    app.register_error_handler(429, rate_limit_exceeded_handler)
     
     # 注册模拟进程清理函数（确保服务器关闭时终止所有模拟进程）
     from .services.simulation_runner import SimulationRunner
