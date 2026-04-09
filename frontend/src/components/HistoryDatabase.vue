@@ -436,11 +436,16 @@ const goToReport = () => {
   }
 }
 
-// 加载历史项目
+// 加载历史项目（仅加载本机 localStorage 中记录的 simulation_id，不暴露其他用户数据）
 const loadHistory = async () => {
   try {
     loading.value = true
-    const response = await getSimulationHistory(20)
+    const myIds = JSON.parse(localStorage.getItem('lifeos_my_sim_ids') || '[]')
+    if (myIds.length === 0) {
+      projects.value = []
+      return
+    }
+    const response = await getSimulationHistory(20, myIds)
     if (response.success) {
       projects.value = response.data || []
     }

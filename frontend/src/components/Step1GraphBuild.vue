@@ -228,6 +228,14 @@ const handleEnterEnvSetup = async () => {
     })
     
     if (res.success && res.data?.simulation_id) {
+      // 将该 simulation_id 存入 localStorage，供历史面板隔离展示（不显示他人的数据）
+      try {
+        const stored = JSON.parse(localStorage.getItem('lifeos_my_sim_ids') || '[]')
+        if (!stored.includes(res.data.simulation_id)) {
+          stored.unshift(res.data.simulation_id)
+          localStorage.setItem('lifeos_my_sim_ids', JSON.stringify(stored.slice(0, 50)))
+        }
+      } catch (e) { /* ignore */ }
       // 跳转到 simulation 页面
       router.push({
         name: 'Simulation',

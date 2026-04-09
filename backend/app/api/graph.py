@@ -56,10 +56,15 @@ def get_project(project_id: str):
 @graph_bp.route('/project/list', methods=['GET'])
 def list_projects():
     """
-    列出所有项目
+    列出项目（隐私隔离：只返回客户端传入的 project_ids 对应记录）
     """
-    limit = request.args.get('limit', 50, type=int)
-    projects = ProjectManager.list_projects(limit=limit)
+    ids_param = request.args.get('ids', '').strip()
+    if not ids_param:
+        return jsonify({"success": True, "data": [], "count": 0})
+    
+    allowed_ids = {pid.strip() for pid in ids_param.split(',') if pid.strip()}
+    all_projects = ProjectManager.list_projects(limit=200)
+    projects = [p for p in all_projects if p.project_id in allowed_ids]
     
     return jsonify({
         "success": True,

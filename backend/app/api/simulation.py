@@ -789,23 +789,30 @@ def get_simulation(simulation_id: str):
 @simulation_bp.route('/list', methods=['GET'])
 def list_simulations():
     """
-    列出所有模拟
-    
+    列出模拟（隐私隔离：必须通过 ids 参数指定要查询的 simulation_id 列表）
+
     Query参数：
-        project_id: 按项目ID过滤（可选）
+        ids: 逗号分隔的 simulation_id 列表（必填，否则返回空）
+        project_id: 按项目ID过滤（可选，在 ids 结果中再过滤）
     """
     try:
+        ids_param = request.args.get('ids', '').strip()
+        if not ids_param:
+            return jsonify({"success": True, "data": [], "count": 0})
+
+        allowed_ids = {sid.strip() for sid in ids_param.split(',') if sid.strip()}
         project_id = request.args.get('project_id')
-        
+
         manager = SimulationManager()
-        simulations = manager.list_simulations(project_id=project_id)
-        
+        all_simulations = manager.list_simulations(project_id=project_id)
+        simulations = [s for s in all_simulations if s.simulation_id in allowed_ids]
+
         return jsonify({
             "success": True,
             "data": [s.to_dict() for s in simulations],
             "count": len(simulations)
         })
-        
+
     except Exception as e:
         logger.error(f"列出模拟失败: {str(e)}")
         return jsonify({
@@ -883,6 +890,7 @@ def get_simulation_history():
     
     Query参数：
         limit: 返回数量限制（默认20）
+        ids:   逗号分隔的 simulation_id 列表，仅返回指定 ID 的记录（隐私隔离）
     
     返回：
         {
@@ -911,9 +919,18 @@ def get_simulation_history():
     """
     try:
         limit = request.args.get('limit', 20, type=int)
+        ids_param = request.args.get('ids', '').strip()
+        
+        # 隐私隔离：只返回客户端明确提供的 simulation_id 列表中的记录。
+        # 如果没有传 ids，返回空列表（避免枚举所有用户数据）。
+        if not ids_param:
+            return jsonify({"success": True, "data": [], "count": 0})
+        
+        allowed_ids = {sid.strip() for sid in ids_param.split(',') if sid.strip()}
         
         manager = SimulationManager()
-        simulations = manager.list_simulations()[:limit]
+        all_simulations = manager.list_simulations()
+        simulations = [s for s in all_simulations if s.simulation_id in allowed_ids][:limit]
         
         # 增强模拟数据，只从 Simulation 文件读取
         enriched_simulations = []
