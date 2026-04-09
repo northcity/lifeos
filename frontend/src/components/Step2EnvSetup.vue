@@ -440,7 +440,10 @@
             <div class="rounds-header">
               <div class="header-left">
                 <span class="section-title">{{ $t('step2.roundsConfig') }}</span>
-                <span class="section-desc">{{ $t('step2.roundsConfigDesc', { hours: simulationConfig?.time_config?.total_simulation_hours || '-', minutesPerRound: simulationConfig?.time_config?.minutes_per_round || '-' }) }}</span>
+                <span class="section-desc">{{ $t('step2.roundsConfigDesc', {
+                  totalMonths: Math.round((simulationConfig?.time_config?.total_simulation_hours || 8760) / 720),
+                  daysPerRound: Math.round((simulationConfig?.time_config?.minutes_per_round || 52560) / 1440)
+                }) }}</span>
               </div>
               <label class="switch-control">
                 <input type="checkbox" v-model="useCustomRounds">

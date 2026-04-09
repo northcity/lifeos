@@ -83,12 +83,12 @@ class AgentActivityConfig:
 
 @dataclass  
 class TimeSimulationConfig:
-    """时间模拟配置（基于中国人作息习惯）"""
-    # 模拟总时长（模拟小时数）
-    total_simulation_hours: int = 72  # 默认模拟72小时（3天）
+    """时间模拟配置（生命轨迹模拟，月/年级时间跨度）"""
+    # 模拟总时长（小时）- 默认1年
+    total_simulation_hours: int = 8760  # 1年 = 8760小时
     
-    # 每轮代表的时间（模拟分钟）- 默认60分钟（1小时），加快时间流速
-    minutes_per_round: int = 60
+    # 每轮代表的时间（分钟）- 自动计算 = total_hours*60/10 ≈ 36天/轮（1年÷10轮）
+    minutes_per_round: int = 52560  # 8760*60/10 = 52560分钟 ≈ 36.5天
     
     # 每小时激活的Agent数量范围
     agents_per_hour_min: int = 5
@@ -604,17 +604,19 @@ class SimulationConfigGenerator:
             return self._get_default_time_config(num_entities)
     
     def _get_default_time_config(self, num_entities: int) -> Dict[str, Any]:
-        """获取默认时间配置（中国人作息）"""
+        """获取默认时间配置（1年计划）"""
+        total_hours = 8760  # 1年
+        minutes_per_round = round(total_hours * 60 / 10)  # 52560分钟 ≈ 36.5天/轮
         return {
-            "total_simulation_hours": 72,
-            "minutes_per_round": 60,  # 每轮1小时，加快时间流速
+            "total_simulation_hours": total_hours,
+            "minutes_per_round": minutes_per_round,
             "agents_per_hour_min": max(1, num_entities // 15),
             "agents_per_hour_max": max(5, num_entities // 5),
             "peak_hours": [19, 20, 21, 22],
             "off_peak_hours": [0, 1, 2, 3, 4, 5],
             "morning_hours": [6, 7, 8],
             "work_hours": [9, 10, 11, 12, 13, 14, 15, 16, 17, 18],
-            "reasoning": "使用默认中国人作息配置（每轮1小时）"
+            "reasoning": "默认1年计划，每轮代表约36天"
         }
     
     def _parse_time_config(self, result: Dict[str, Any], num_entities: int) -> TimeSimulationConfig:
@@ -638,8 +640,10 @@ class SimulationConfigGenerator:
             logger.warning(f"agents_per_hour_min >= max，已修正为 {agents_per_hour_min}")
         
         return TimeSimulationConfig(
-            total_simulation_hours=result.get("total_simulation_hours", 72),
-            minutes_per_round=result.get("minutes_per_round", 60),  # 默认每轮1小时
+            total_simulation_hours=result.get("total_simulation_hours", 8760),
+            # 强制计算 minutes_per_round = total_hours * 60 / FREE_MAX_ROUNDS(10)
+            # 确保10轮刚好覆盖全部模拟期
+            minutes_per_round=max(1, round(result.get("total_simulation_hours", 8760) * 60 / 10)),
             agents_per_hour_min=agents_per_hour_min,
             agents_per_hour_max=agents_per_hour_max,
             peak_hours=result.get("peak_hours", [19, 20, 21, 22]),
