@@ -37,8 +37,9 @@ def main():
     app = create_app()
     
     # 获取运行配置
+    # Railway 注入 PORT 环境变量，本地开发默认 5001
     host = os.environ.get('FLASK_HOST', '0.0.0.0')
-    port = int(os.environ.get('FLASK_PORT', 5001))
+    port = int(os.environ.get('PORT') or os.environ.get('FLASK_PORT', 5001))
     debug = Config.DEBUG
     
     # 启动服务
