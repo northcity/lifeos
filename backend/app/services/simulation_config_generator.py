@@ -24,7 +24,7 @@ from ..utils.logger import get_logger
 from ..utils.locale import get_language_instruction, t
 from .zep_entity_reader import EntityNode, ZepEntityReader
 
-logger = get_logger('mirofish.simulation_config')
+logger = get_logger('lifeos.simulation_config')
 
 # 中国作息时间配置（北京时间）
 CHINA_TIMEZONE_CONFIG = {
@@ -120,10 +120,10 @@ class EventConfig:
     # 定时事件（在特定时间触发的事件）
     scheduled_events: List[Dict[str, Any]] = field(default_factory=list)
     
-    # 热点话题关键词
+    # 关键人生节点关键词
     hot_topics: List[str] = field(default_factory=list)
     
-    # 舆论引导方向
+    # 人生目标导向
     narrative_direction: str = ""
 
 
@@ -693,8 +693,8 @@ class SimulationConfigGenerator:
 
 ## 任务
 请生成事件配置JSON：
-- 提取热点话题关键词
-- 描述舆论发展方向
+- 提取关键人生节点关键词
+- 描述人生轨迹发展方向
 - 设计初始帖子内容，**每个帖子必须指定 poster_type（发布者类型）**
 
 **重要**: poster_type 必须从上面的"可用实体类型"中选择，这样初始帖子才能分配给合适的 Agent 发布。
@@ -703,7 +703,7 @@ class SimulationConfigGenerator:
 返回JSON格式（不要markdown）：
 {{
     "hot_topics": ["关键词1", "关键词2", ...],
-    "narrative_direction": "<舆论发展方向描述>",
+    "narrative_direction": "<人生轨迹发展方向描述>",
     "initial_posts": [
         {{"content": "帖子内容", "poster_type": "实体类型（必须从可用类型中选择）"}},
         ...
@@ -854,7 +854,7 @@ class SimulationConfigGenerator:
 - **官方机构**（University/GovernmentAgency）：活跃度低(0.1-0.3)，工作时间(9-17)活动，响应慢(60-240分钟)，影响力高(2.5-3.0)
 - **媒体**（MediaOutlet）：活跃度中(0.4-0.6)，全天活动(8-23)，响应快(5-30分钟)，影响力高(2.0-2.5)
 - **个人**（Student/Person/Alumni）：活跃度高(0.6-0.9)，主要晚间活动(18-23)，响应快(1-15分钟)，影响力低(0.8-1.2)
-- **公众人物/专家**：活跃度中(0.4-0.6)，影响力中高(1.5-2.0)
+- **个人实体/家庭成员**：活跃度中(0.4-0.6)，影响力中高(1.5-2.0)
 
 返回JSON格式（不要markdown）：
 {{

@@ -30,7 +30,7 @@ from .zep_tools import (
     InterviewResult
 )
 
-logger = get_logger('mirofish.report_agent')
+logger = get_logger('lifeos.report_agent')
 
 
 class ReportLogger:
@@ -353,8 +353,8 @@ class ReportConsoleLogger:
         
         # 添加到 report_agent 相关的 logger
         loggers_to_attach = [
-            'mirofish.report_agent',
-            'mirofish.zep_tools',
+            'lifeos.report_agent',
+            'lifeos.zep_tools',
         ]
         
         for logger_name in loggers_to_attach:
@@ -369,8 +369,8 @@ class ReportConsoleLogger:
         
         if self._file_handler:
             loggers_to_detach = [
-                'mirofish.report_agent',
-                'mirofish.zep_tools',
+                'lifeos.report_agent',
+                'lifeos.zep_tools',
             ]
             
             for logger_name in loggers_to_detach:
@@ -493,14 +493,14 @@ TOOL_DESC_INSIGHT_FORGE = """\
 
 TOOL_DESC_PANORAMA_SEARCH = """\
 【广度搜索 - 获取全貌视图】
-这个工具用于获取模拟结果的完整全貌，特别适合了解事件演变过程。它会：
+这个工具用于获取模拟结果的完整全貌，特别适合了解人生轨迹的演变过程。它会：
 1. 获取所有相关节点和关系
 2. 区分当前有效的事实和历史/过期的事实
-3. 帮助你了解舆情是如何演变的
+3. 帮助你了解人生目标是如何推进的
 
 【使用场景】
-- 需要了解事件的完整发展脉络
-- 需要对比不同阶段的舆情变化
+- 需要了解人生决策的完整发展脉络
+- 需要对比不同阶段的人生轨迹变化
 - 需要获取全面的实体和关系信息
 
 【返回内容】
@@ -566,7 +566,7 @@ PLAN_SYSTEM_PROMPT = """\
 - ✅ 聚焦于预测结果：事件走向、群体反应、涌现现象、潜在风险
 - ✅ 模拟世界中的Agent言行就是对未来人群行为的预测
 - ❌ 不是对现实世界现状的分析
-- ❌ 不是泛泛而谈的舆情综述
+- ❌ 不是泛泛而谈的人生建议综述
 
 【章节数量限制】
 - 最少2个章节，最多5个章节
@@ -678,13 +678,13 @@ SECTION_SYSTEM_PROMPT_TEMPLATE = """\
 
 【正确示例】
 ```
-本章节分析了事件的舆论传播态势。通过对模拟数据的深入分析，我们发现...
+本章节分析了模拟中个人决策路径的演变态势。通过对模拟数据的深入分析，我们发现...
 
 **首发引爆阶段**
 
-微博作为舆情的第一现场，承担了信息首发的核心功能：
+快波决策段，决策发起方承担了最关键的首发事件：
 
-> "微博贡献了68%的首发声量..."
+> "个人决策在这一阶段的关键䉲决..."
 
 **情绪放大阶段**
 
@@ -752,16 +752,16 @@ SECTION_SYSTEM_PROMPT_TEMPLATE = """\
 
    ✅ 正确格式：
    ```
-   校方的回应被认为缺乏实质内容。
+   个人决策在关键节点遇到了结构性限制。
 
-   > "校方的应对模式在瞬息万变的社交媒体环境中显得僵化和迟缓。"
+   > "当前路径在时间压力和资源约束下显得阶段性和保守。"
 
-   这一评价反映了公众的普遍不满。
+   这一评估反映了模拟中阴性自我的核心观察。
    ```
 
    ❌ 错误格式：
    ```
-   校方的回应被认为缺乏实质内容。> "校方的应对模式..." 这一评价反映了...
+   个人决策在关键节点遇到了结构性限制。> "当前路径..." 这一评估反映了...
    ```
 5. 保持与其他章节的逻辑连贯性
 6. 【避免重复】仔细阅读下方已完成的章节内容，不要重复描述相同的信息

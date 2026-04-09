@@ -17,7 +17,7 @@ from ..utils.logger import get_logger
 from ..utils.locale import t, get_locale, set_locale
 from ..models.project import ProjectManager
 
-logger = get_logger('mirofish.api.simulation')
+logger = get_logger('lifeos.api.simulation')
 
 
 # Interview prompt 优化前缀
@@ -172,7 +172,7 @@ def create_simulation():
     请求（JSON）：
         {
             "project_id": "proj_xxxx",      // 必填
-            "graph_id": "mirofish_xxxx",    // 可选，如不提供则从project获取
+            "graph_id": "lifeos_xxxx",    // 可选，如不提供则从project获取
             "enable_twitter": true,          // 可选，默认true
             "enable_reddit": true            // 可选，默认true
         }
@@ -183,7 +183,7 @@ def create_simulation():
             "data": {
                 "simulation_id": "sim_xxxx",
                 "project_id": "proj_xxxx",
-                "graph_id": "mirofish_xxxx",
+                "graph_id": "lifeos_xxxx",
                 "status": "created",
                 "enable_twitter": true,
                 "enable_reddit": true,
@@ -890,7 +890,7 @@ def get_simulation_history():
                 {
                     "simulation_id": "sim_xxxx",
                     "project_id": "proj_xxxx",
-                    "project_name": "武大舆情分析",
+                    "project_name": "个人生命轨迹模拟",
                     "simulation_requirement": "如果武汉大学发布...",
                     "status": "completed",
                     "entities_count": 68,
@@ -1263,7 +1263,7 @@ def get_simulation_config(simulation_id: str):
     返回包含：
         - time_config: 时间配置（模拟时长、轮次、高峰/低谷时段）
         - agent_configs: 每个Agent的活动配置（活跃度、发言频率、立场等）
-        - event_config: 事件配置（初始帖子、热点话题）
+        - event_config: 事件配置（初始帖子、关键节点）
         - platform_configs: 平台配置
         - generation_reasoning: LLM的配置推理说明
     """
@@ -1381,7 +1381,7 @@ def generate_profiles():
     
     请求（JSON）：
         {
-            "graph_id": "mirofish_xxxx",     // 必填
+            "graph_id": "lifeos_xxxx",     // 必填
             "entity_types": ["Student"],      // 可选
             "use_llm": true,                  // 可选
             "platform": "reddit"              // 可选

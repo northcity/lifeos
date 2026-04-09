@@ -17,7 +17,7 @@ from ..models.task import TaskManager, TaskStatus
 from ..utils.logger import get_logger
 from ..utils.locale import t, get_locale, set_locale
 
-logger = get_logger('mirofish.api.report')
+logger = get_logger('lifeos.api.report')
 
 
 # ============== 报告生成接口 ==============
@@ -479,7 +479,7 @@ def chat_with_report_agent():
     请求（JSON）：
         {
             "simulation_id": "sim_xxxx",        // 必填，模拟ID
-            "message": "请解释一下舆情走向",    // 必填，用户消息
+            "message": "请分析我的人生轨迹走向",    // 必填，用户消息
             "chat_history": [                   // 可选，对话历史
                 {"role": "user", "content": "..."},
                 {"role": "assistant", "content": "..."}
@@ -939,7 +939,7 @@ def search_graph_tool():
     
     请求（JSON）：
         {
-            "graph_id": "mirofish_xxxx",
+            "graph_id": "lifeos_xxxx",
             "query": "搜索查询",
             "limit": 10
         }
@@ -987,7 +987,7 @@ def get_graph_statistics_tool():
     
     请求（JSON）：
         {
-            "graph_id": "mirofish_xxxx"
+            "graph_id": "lifeos_xxxx"
         }
     """
     try:

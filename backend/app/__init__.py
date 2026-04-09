@@ -27,7 +27,7 @@ def create_app(config_class=Config):
         app.json.ensure_ascii = False
     
     # 设置日志
-    logger = setup_logger('mirofish')
+    logger = setup_logger('lifeos')
     
     # 只在 reloader 子进程中打印启动信息（避免 debug 模式下打印两次）
     is_reloader_process = os.environ.get('WERKZEUG_RUN_MAIN') == 'true'
@@ -51,14 +51,14 @@ def create_app(config_class=Config):
     # 请求日志中间件
     @app.before_request
     def log_request():
-        logger = get_logger('mirofish.request')
+        logger = get_logger('lifeos.request')
         logger.debug(f"请求: {request.method} {request.path}")
         if request.content_type and 'json' in request.content_type:
             logger.debug(f"请求体: {request.get_json(silent=True)}")
     
     @app.after_request
     def log_response(response):
-        logger = get_logger('mirofish.request')
+        logger = get_logger('lifeos.request')
         logger.debug(f"响应: {response.status_code}")
         return response
     
