@@ -36,7 +36,7 @@ WORKDIR /app
 
 # Install Python dependencies first (cached layer)
 COPY backend/pyproject.toml backend/uv.lock ./backend/
-RUN cd backend && uv sync --frozen --no-dev
+RUN cd backend && uv sync --no-dev
 
 # Copy backend source
 COPY backend/ ./backend/
